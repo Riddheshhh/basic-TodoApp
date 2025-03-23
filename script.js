@@ -125,7 +125,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
         // now we can push this newTask in the array.
         tasks.push(newTask);
-        saveTasks();  
+        saveTasks();
+        renderTasks(newTask);  
         TodoInput.value = "" // clears the input once the button has clicked.
         console.log(tasks)
     })
@@ -141,8 +142,27 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 
     // function to pick up the tasks from the localstorage and rendering it on the page.
-    function renderTasks(task){
-        console.log(task)
+    function renderTasks(task){ // here we are taking a task as an arguement to further convert it into a list item.
+        // you have to make a list for rendering the tasks.
+        const li = document.createElement('li')
+        li.setAttribute('data-id', task.id)
+
+        if(task.completed) li.classList.add('completed')
+
+        li.innerHTML = `
+        <span>${task.text}</span>
+        <button>Delete</button>
+        `
+        // we have to add an EL to the list to mark it completed or not.
+        li.addEventListener('click', (e)=>{
+            if(e.target.tagName === "BUTTON") return;
+            task.completed = !task.completed;
+            li.classList.toggle('completed')
+            console.log(task)
+            saveTasks();
+        })
+
+        TodoList.appendChild(li);
     }
 
 })
