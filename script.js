@@ -162,6 +162,16 @@ document.addEventListener('DOMContentLoaded', ()=>{
             saveTasks();
         })
 
+        // now eventlistener for the delete button
+        li.querySelector('button').addEventListener('click', (e)=>{
+            e.stopPropagation() // prevents toggle from firing, (event bubbling)
+
+            tasks = tasks.filter(t => t.id !== task.id)
+            li.remove();
+            saveTasks();
+        })
+
+
         TodoList.appendChild(li);
     }
 
