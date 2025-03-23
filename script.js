@@ -106,7 +106,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     // well you gotta store the tasks. For that, an array would be useful.
 
-    let tasks = [];
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+    // for the rendering of the tasks if any when the browser is loaded the very first time.
+    tasks.forEach(task => renderTasks(task))
 
     // let's just start with how we can add task by clicking on the addbtn.
     AddBtn.addEventListener('click', ()=>{
@@ -136,5 +139,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
         // note - localstorage can only store a string value, no other. Also, LocalStorage rewrites the entire storage again and again when the function is called and the tasks are need to be stored.
     }
 
-    
+
+    // function to pick up the tasks from the localstorage and rendering it on the page.
+    function renderTasks(task){
+        console.log(task)
+    }
+
 })
