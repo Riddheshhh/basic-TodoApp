@@ -127,4 +127,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
         console.log(tasks)
     })
 
+
+    // creating a function to store the array in the local storage of the browser. It will be helpful whenever an user adds a new task in the list.
+    function saveTasks(){
+        localStorage.setItem('tasks', JSON.stringify(tasks))
+        
+        
+        // note - localstorage can only store a string value, no other. Also, LocalStorage rewrites the entire storage again and again when the function is called and the tasks are need to be stored.
+    }
+
+    
 })
